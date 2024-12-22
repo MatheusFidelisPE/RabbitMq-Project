@@ -29,9 +29,6 @@ public class MessageController {
     @PostMapping("/json_publish")
     public ResponseEntity<String> sendJsonMessage(@RequestBody User user) {
         rabbitmqJsonProducer.sendJsonMessage(user);
-        LOGGER.info(String.format("User sent successfully: %d", user.getId()));
-        LOGGER.info(String.format("User sent successfully: %s", user.getFirstName()));
-        LOGGER.info(String.format("User sent successfully: %s", user.getLastName()));
 
         return ResponseEntity.ok("User sent successfully");
     }
