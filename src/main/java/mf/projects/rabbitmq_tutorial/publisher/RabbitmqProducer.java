@@ -10,24 +10,25 @@ import java.util.logging.Logger;
 @Service
 public class RabbitmqProducer {
 
-    @Value("${rabbitmq.topic.exchange.name}")
-    private String exchangeName;
     @Value("${rabbitmq.routing_key}")
     private String routingKey;
+    @Value("${rabbitmq.topic.exchange.name}")
+    private String exchangeName;
+
 
     private static final Logger LOGGER = Logger.getLogger(RabbitmqProducer.class.getName());
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-//    public RabbitmqProducer(RabbitTemplate rabbitTemplate) {
-//        this.rabbitTemplate = rabbitTemplate;
-//    }
-
     public void sendMessage(String message) {
         LOGGER.info(String.format("Message sent -> %s", message));
         rabbitTemplate.convertAndSend(exchangeName, routingKey, message);
 
     }
+
+
+
+
 
 }
