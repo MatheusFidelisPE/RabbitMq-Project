@@ -20,7 +20,7 @@ public class MessageController {
     private RabbitmqJsonProducer rabbitmqJsonProducer;
     private final Logger LOGGER = LoggerFactory.getLogger(MessageController.class);
 
-    @GetMapping("/publish")
+    @PostMapping("/publish")
     public ResponseEntity<String> sendMessage(@RequestParam("message") String message) {
         rabbitmqProducer.sendMessage(message);
         return ResponseEntity.ok("Message sent successfully");
