@@ -31,6 +31,7 @@ public class MessageController {
         rabbitmqJsonProducer.sendJsonMessage(user);
 
         return ResponseEntity.ok("User sent successfully");
+
     }
 
 

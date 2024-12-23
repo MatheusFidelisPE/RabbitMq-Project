@@ -16,7 +16,4 @@ public class RabbitmqConsumer {
     public void consume(String message){
         LOGGER.info(String.format("Message received <- %s", message));
     }
-
-
-
 }

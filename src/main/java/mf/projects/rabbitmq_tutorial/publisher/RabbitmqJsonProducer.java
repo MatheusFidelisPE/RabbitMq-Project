@@ -18,14 +18,14 @@ public class RabbitmqJsonProducer {
 
     private static final Logger LOGGER = Logger.getLogger(RabbitmqJsonProducer.class.getName());
 
+    @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public RabbitmqJsonProducer(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
-    }
-
     public void sendJsonMessage(User user) {
-        rabbitTemplate.convertAndSend(exchangeName, jsonRoutingKey, user);
-        LOGGER.info(String.format("Message sent -> %s", user.toString()));
+        for (int i = 0; i < 10; i++) {
+            user.setId(user.getId()+i);
+            rabbitTemplate.convertAndSend(exchangeName, jsonRoutingKey, user);
+            LOGGER.info(String.format("Message sent -> %s", user.toString()));
+        }
     }
 }
